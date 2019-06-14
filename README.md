@@ -4,6 +4,7 @@ so you want to build a simple Flask based python API with [Flaskex](https://gith
 
 # Getting Started 
 
+## Remote deploy with now
 
 Let's deploy it right away in 3 steps.
 
@@ -25,6 +26,8 @@ now
 ```
 
 Open your browswer then copy and paste the url it provided to your clipboard. 
+
+## Local 
 
 Then let's dig into the code base and run it locally. 
 
