@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "name": "scout",
+    "builds": [
+      { "src": "static/**", "use": "@now/static" },
+      { "src": "*.py", "use": "@now/python", "config": { "maxLambdaSize": "30mb" } }
+    ],
+    "routes": [
+      { "src": "/static/(.*)", "dest": "static/$1" },
+      { "src": "/", "dest": "app.py" },
+      { "src": "/signup", "dest": "app.py" },
+      { "src": "/settings", "dest": "app.py" },
+      { "src": "/logout", "dest": "app.py" }
+    ],
+    "env": {
+      "DATABASE_URI": "@flaskex-db-uri",
+      "SECRET_KEY": "@flaskex-secret-key"
+    }
+  }
