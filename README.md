@@ -59,3 +59,4 @@ I also wanted to this example to work completely offline so that I could tinker 
 
 * [recaptcha](https://pusher.com/tutorials/google-recaptcha-flask)
 * [flask-restplus-server-example](https://github.com/frol/flask-restplus-server-example)
+* [flask_weather](https://github.com/M0nica/flask_weather)
