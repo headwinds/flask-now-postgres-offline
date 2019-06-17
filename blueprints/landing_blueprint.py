@@ -2,11 +2,11 @@ from flask import Blueprint, redirect, url_for, render_template, request, sessio
 from helpers.helpers import get_user, credentials_valid
 from forms.login_form import LoginForm
 
-login_blueprint = Blueprint("login", __name__)
+landing_blueprint = Blueprint("landing", __name__)
 
-# -------- Login --------- #
-@login_blueprint.route('/login', methods=['GET', 'POST'])
-def login():
+# -------- Landing --------- #
+@landing_blueprint.route('/', methods=['GET', 'POST'])
+def landing():
     if not session.get('logged_in'):
         form = LoginForm(request.form)
         if request.method == 'POST':

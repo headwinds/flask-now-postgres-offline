@@ -6,9 +6,10 @@ from forms.login_form import LoginForm
 from helpers.helpers import get_user, hash_password, credentials_valid, username_taken, add_user, change_user
 from flask import Flask, redirect, url_for, render_template, request, session
 from flask_cors import CORS
+from blueprints.landing_blueprint import landing_blueprint
 from blueprints.login_blueprint import login_blueprint
 from blueprints.logout_blueprint import logout_blueprint
-from blueprints.register_blueprint import register_blueprint
+from blueprints.registration_blueprint import registration_blueprint
 from blueprints.settings_blueprint import settings_blueprint
 import json
 import sys
@@ -34,12 +35,14 @@ app.config['RECAPTCHA_OPTIONS'] = {'theme':'white'}
 
 
 # ======== Blueprint Routing =================================================#
+# Landing 
+app.register_blueprint(landing_blueprint)
 # Login 
 app.register_blueprint(login_blueprint)
 # Logout 
 app.register_blueprint(logout_blueprint)
-# Register 
-app.register_blueprint(register_blueprint)
+# Registration 
+app.register_blueprint(registration_blueprint)
 # Settings 
 app.register_blueprint(settings_blueprint)
 

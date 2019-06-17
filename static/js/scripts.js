@@ -10,19 +10,20 @@ function error(type) {
   $("."+type).css("border-color", "#E14448");
 }
 
-var login = function() {
+const login = function() {
   $.post({
     type: "POST",
     url: "/",
     data: {"username": $("#login-user").val(), 
            "password": $("#login-pass").val()},
     success(response){
-      var status = JSON.parse(response)["status"];
+      const status = JSON.parse(response)["status"];
       if (status === "Login successful") { location.reload(); }
       else { error("login-input"); }
     }
   });
 };
+
 
 $(document).ready(function() {
   

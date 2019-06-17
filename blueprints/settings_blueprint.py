@@ -18,4 +18,4 @@ def settings():
         user = get_user()
         print("settings user: ", user)
         return render_template('settings.html', user=user)
-    return redirect(url_for('login'))
+    return redirect(url_for('login.login'))

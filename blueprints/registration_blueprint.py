@@ -1,14 +1,14 @@
 from flask import Blueprint, redirect, url_for, render_template, request, session, json
-from helpers.helpers import get_user, credentials_valid
-from forms.login_form import LoginForm
+from helpers.helpers import get_user, credentials_valid, hash_password, username_taken, add_user
+from forms.registration_form import RegistrationForm
 
-register_blueprint = Blueprint("register", __name__)
+registration_blueprint = Blueprint("probe", __name__)
 
 # -------- Register --------- #
-@register_blueprint.route('/signup', methods=['GET', 'POST'])
+@registration_blueprint.route('/signup', methods=['GET', 'POST'])
 def signup():
     if not session.get('logged_in'):
-        form = forms.LoginForm(request.form)
+        form = RegistrationForm(request.form)
         if request.method == 'POST':
             username = request.form['username'].lower()
             password = hash_password(request.form['password'])
@@ -22,4 +22,4 @@ def signup():
                 return json.dumps({'status': 'Username taken'})
             return json.dumps({'status': 'User/Pass required'})
         return render_template('login.html', form=form)
-    return redirect(url_for('login'))
+    return redirect(url_for('login.login'))
