@@ -6,15 +6,13 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 import os
 
-# SQLALCHEMY_DATABASE_URI = 'sqlite:///accounts.db'
-
-local_uri = 'postgresql+psycopg2://dbusername:dbpassword@dbhost:dbport/dbname'
-remote_uri = 'postgresql+psycopg2://dbusername:dbpassword@dbhost:dbport/dbname'
 SQLALCHEMY_DATABASE_URI = None
+
+
 if 'DATABASE_URI' in os.environ:
-    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URI']
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URI")
 else:
-    SQLALCHEMY_DATABASE_URI = local_uri
+    SQLALCHEMY_DATABASE_URI = os.getenv("DB_URI_LOCAL")
 
 Base = declarative_base()
 

@@ -4,13 +4,16 @@ so you want to build a simple Flask based python API with [Flaskex](https://gith
 
 # Getting Started 
 
-## Remote deploy with now
+You can either begin with either the remote or local deployment.
+
+## Remote deployment
 
 Let's deploy it right away in 3 steps.
 
 1. setup your remote postgreSQL database.
 
 I went with [ElephantSQL](https://www.elephantsql.com/) which has a nice free tier for hobbyists. Once you create your database, find that database from the **list all instances** drop down at the top. On the details screen, you should be able to find your url. 
+
 
 2. Add your zeit [secrets](https://zeit.co/docs/v2/deployments/environment-variables-and-secrets) 
 
@@ -27,7 +30,7 @@ now
 
 Open your browswer then copy and paste the url it provided to your clipboard. 
 
-## Local 
+## Local deployment
 
 Then let's dig into the code base and run it locally. 
 
@@ -37,14 +40,20 @@ Then let's dig into the code base and run it locally.
 python -m venv tutorial-env 
 ```
 
-2. install the requirements and the edit the .env with your local and remote settings. I used Elephant SQL free tier. 
+2. install the requirements.
 
 ```
 $ source env/bin/activate 
 $ python install -r requirements.txt
 ```
 
-3. run the app 
+3. rename .env-sample to .env and edit the local database connection uri to match your local setup
+
+```
+DATABASE_URI = "postgresql+psycopg2://testuser:testpassword@localhost:5432/postgres"
+```
+
+4. run the app 
 
 ```
 $ python app.py 

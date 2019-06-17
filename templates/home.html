@@ -1,9 +1,60 @@
 {% extends "base.html" %}
 {% block body %}
 {% include "navbar.html" %}
-<section class="hero is-primary is-bold is-large">
-  <div class="hero-body">Welcome Home</div>
-  <p>{{user.username}}</p>
+<style>
+  .hero {
+    background: "#eee";
+    margin: 20px;
+  }  
+  a {color: plum !important;
+    text-decoration: underline !important;}
+</style>
+<section class="hero is-bold is-small">
+    <div class="hero-body">
+        <h1>Welcome Home <span style="font-size: 18px; color: black; font-weight: bold">{{user.username}}</span></h1>
+        <a href="/settings" class="link">settings</a>
+    </div>
+    <div>
+        <h2>Test API calls</h2>
+        <hr />
+        <div>
+            <div>
+                <h3>Post Action</h3>
+                <p>send an gamer's action to the server and saves it in the datasebase</p>
+                <p>route: "/actions"</p>
+                <h4>Payload</h4>
+                <code>
+                    {userId: 0,
+                    action: "buy item",
+                    item: {title: "sword", cost: 10}}
+                </code>
+            </div>
+            <hr />
+            <div>
+                <h3>Get Action</h3>
+                <p>get the user's actions</p>
+                <p>route: "/actions/:id"</p>
+            </div>
+            <hr />
+            <div>
+                <h3>Update Last Action</h3>
+                <p>get the user's actions</p>
+                <p>route: "/actions/:id/update"</p>
+                <h4>Payload</h4>
+                <code>
+                    {userId: 0,
+                    action: "sell item",
+                    item: {title: "club", cost: 100}}
+                </code>
+            </div>
+            <hr />
+            <div>
+                <h3>Delete Last Action</h3>
+                <p>get the user's actions</p>
+                <p>route: "/actions/:id/delete"</p>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock %}
 {% block scripts %}
