@@ -32,10 +32,10 @@ def get_user():
         user = s.query(database_connection.User).filter(database_connection.User.username.in_([username])).first()
         return user
 
-
+# password=password.decode('utf8') not needed
 def add_user(username, password, email):
     with session_scope() as s:
-        u = database_connection.User(username=username, password=password.decode('utf8'), email=email)
+        u = database_connection.User(username=username, password=password, email=email)
         s.add(u)
         s.commit()
 

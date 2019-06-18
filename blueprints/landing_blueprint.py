@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, url_for, render_template, request, session, json
 from helpers.helpers import get_user, credentials_valid
-from forms.login_form import LoginForm
+from forms.registration_form import RegistrationForm
 
 landing_blueprint = Blueprint("landing", __name__)
 
@@ -8,7 +8,7 @@ landing_blueprint = Blueprint("landing", __name__)
 @landing_blueprint.route('/', methods=['GET', 'POST'])
 def landing():
     if not session.get('logged_in'):
-        form = LoginForm(request.form)
+        form = RegistrationForm(request.form)
         if request.method == 'POST':
             username = request.form['username'].lower()
             password = request.form['password']

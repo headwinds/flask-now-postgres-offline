@@ -6,31 +6,7 @@ so you want to build a simple Flask based python API with [Flaskex](https://gith
 
 You can either begin with either the remote or local deployment.
 
-## Remote deployment
-
-Let's deploy it right away in 3 steps.
-
-1. setup your remote postgreSQL database.
-
-I went with [ElephantSQL](https://www.elephantsql.com/) which has a nice free tier for hobbyists. Once you create your database, find that database from the **list all instances** drop down at the top. On the details screen, you should be able to find your url. 
-
-
-2. Add your zeit [secrets](https://zeit.co/docs/v2/deployments/environment-variables-and-secrets) 
-
-```
-now secret add flashex-db-uri 'postgresql+psycopg2://username:password@dbhost:dbport/dbname' 
-now secret add flaskex-secret-key 'flaskex' 
-```
-
-3. deploy 
-
-```
-now
-```
-
-Open your browswer then copy and paste the url it provided to your clipboard. 
-
-## Local deployment
+#### Local deployment
 
 Then let's dig into the code base and run it locally. 
 
@@ -60,6 +36,30 @@ $ python app.py
 ```
 
 Open your browswer to http://localhost:5000
+
+#### Remote deployment
+
+Let's deploy it right away in 3 steps.
+
+1. setup your remote postgreSQL database.
+
+I went with [ElephantSQL](https://www.elephantsql.com/) which has a nice free tier for hobbyists. Once you create your database, find that database from the **list all instances** drop down at the top. On the details screen, you should be able to find your url. 
+
+
+2. Add your zeit [secrets](https://zeit.co/docs/v2/deployments/environment-variables-and-secrets) 
+
+```
+now secret add flashex-db-uri 'postgresql+psycopg2://username:password@dbhost:dbport/dbname' 
+now secret add flaskex-secret-key 'flaskex' 
+```
+
+3. deploy 
+
+```
+now
+```
+
+Open your browswer then copy and paste the url it provided to your clipboard. 
 
 # Credit 
 
