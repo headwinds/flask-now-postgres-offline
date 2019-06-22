@@ -1,5 +1,5 @@
 from flask import Blueprint, redirect, url_for, render_template, request, session, json
-from helpers.helpers import get_user, credentials_valid, hash_password, username_taken, add_user
+from helpers.helpers_user import get_user, credentials_valid, hash_password, username_taken, add_user
 from forms.registration_form import RegistrationForm
 
 registration_blueprint = Blueprint("registration", __name__)

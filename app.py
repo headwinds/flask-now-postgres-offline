@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from dotenv import load_dotenv
 load_dotenv()
-import database.database_connection
+import database.database_connection 
 from forms.login_form import LoginForm
 from helpers.helpers import get_user, hash_password, credentials_valid, username_taken, add_user, change_user
 from flask import Flask, redirect, url_for, render_template, request, session
@@ -49,6 +49,9 @@ app.register_blueprint(home_blueprint)
 # Settings 
 app.register_blueprint(settings_blueprint)
 
+
+# ======== Bind the Database =================================================#
+# bind_engine()
 
 # ======== Main ============================================================== #
 if __name__ == "__main__":

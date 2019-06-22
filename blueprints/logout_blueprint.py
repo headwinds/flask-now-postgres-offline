@@ -1,5 +1,5 @@
 from flask import Blueprint, redirect, url_for, render_template, request, session, json
-from helpers.helpers import get_user, credentials_valid
+from helpers.helpers_user import get_user, credentials_valid
 from forms.login_form import LoginForm
 
 logout_blueprint = Blueprint("logout", __name__)

@@ -1,11 +1,11 @@
 from flask import Blueprint, redirect, url_for, render_template, request, session, json
 from helpers.helpers_user import get_user, credentials_valid
 
-settings_blueprint = Blueprint("settings", __name__)
+transactions_blueprint = Blueprint("transactions", __name__)
 
 # -------- API Settings --------- #
-@settings_blueprint.route('/api/settings', methods=['GET', 'POST'])
-def api_settings():
+@transactions_blueprint.route('/api/transactions', methods=['GET', 'POST', 'PUT', 'DELETE', 'PATCH'])
+def api_transactions():
     if session.get('logged_in'):
         if request.method == 'POST':
             password = request.form['password']
@@ -18,8 +18,8 @@ def api_settings():
     return json.dumps({'status': 'success', user: user})
 
 # -------- Test Settings --------- #
-@settings_blueprint.route('/settings', methods=['GET', 'POST'])
-def settings():
+@transactions_blueprint.route('/transactions', methods=['GET', 'POST', 'PUT', 'DELETE', 'PATCH'])
+def transactions():
     if session.get('logged_in'):
         if request.method == 'POST':
             password = request.form['password']

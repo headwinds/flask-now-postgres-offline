@@ -11,7 +11,7 @@
 </style>
 <section class="hero is-bold is-small">
     <div class="hero-body">
-        <h1>Welcome Home <span style="font-size: 18px; color: black; font-weight: bold">{{user.username}}</span></h1>
+        <h1>Welcome Home <span style="font-size: 18px; color: black; font-weight: bold">{{data.username}}</span></h1>
         <a href="/settings" class="link">settings</a>
     </div>
     <div>
@@ -31,9 +31,13 @@
             </div>
             <hr />
             <div>
-                <h3>Get Action</h3>
-                <p>get the user's actions</p>
+                <h3>Get Transactions</h3>
+                <p>get the user's transactions for the last week limited to a max of 100 for each page</p>
                 <p>route: "/actions/:id"</p>
+                <div>
+                   <!-- {% include "transaction-table.html" %} -->
+                </div>
+                <button id="test-get-transactions">Get Transactions</button>
             </div>
             <hr />
             <div>

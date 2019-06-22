@@ -2,9 +2,19 @@
 
 so you want to build a simple Flask based python API with [Flaskex](https://github.com/anfederico/Flaskex) and deploy it with [now](https://zeit.co/now)?
 
+On top of the Flaskex starter, I added the following:
+* registration with recaptcha 
+* verify registration account via email 
+* more modular blueprint routes so that you can serve json or html templates
+* a route which performs a database join
+* routes that perform all the REST verbs: GET, POST, PUT, DELETE, PATCH 
+* redesigned the landing page flow and added a few new pages
+* offline dev: so that you can code without wifi 
+* offline sync: the end user could do work in a native app and sync later
+
 # Getting Started 
 
-You can either begin with either the remote or local deployment.
+After you have setup your [recaptcha](https://pusher.com/tutorials/google-recaptcha-flask) keys, you can either begin with either the remote or local deployment.
 
 #### Local deployment
 
@@ -69,6 +79,5 @@ I also wanted to this example to work completely offline so that I could tinker 
 
 # Other nice flask starter projects
 
-* [recaptcha](https://pusher.com/tutorials/google-recaptcha-flask)
 * [flask-restplus-server-example](https://github.com/frol/flask-restplus-server-example)
 * [flask_weather](https://github.com/M0nica/flask_weather)

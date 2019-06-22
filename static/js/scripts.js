@@ -13,16 +13,20 @@ function error(type) {
 const login = function() {
   $.post({
     type: "POST",
-    url: "/",
+    url: "/login",
     data: {"username": $("#login-user").val(), 
            "password": $("#login-pass").val()},
     success(response){
       const status = JSON.parse(response)["status"];
-      if (status === "Login successful") { location.reload(); }
+      if (status === "success") { location.reload(); }
       else { error("login-input"); }
     }
   });
 };
+
+function getOnlineStatus(){
+    return navigator.onLine;
+}
 
 
 $(document).ready(function() {
@@ -57,6 +61,74 @@ $(document).ready(function() {
       }
     });
   });
+
+  // TEST THE TRANSACTIONS API
+
+  // GET
+
+  $(document).on("click", "#test-get-transactions", function() {
+    $.post({
+      type: "GET",
+      url: "/transactions/1",
+      success(response){
+        message(JSON.parse(response)["status"]);
+      }
+    });
+  });
+
+  // POST
+
+  $(document).on("click", "#test-post-transactions", function(transaction) {
+    $.post({
+      type: "POST",
+      url: "/transactions",
+      data: transaction,
+      success(response){
+        message(JSON.parse(response)["status"]);
+      }
+    });
+  });
+
+  // PUT
+
+  $(document).on("click", "#test-post-transactions", function(transaction) {
+    $.post({
+      type: "PUT",
+      url: "/transactions/:id",
+      data: transaction,
+      success(response){
+        message(JSON.parse(response)["status"]);
+      }
+    });
+  });
+
+  // PATCH
+
+  $(document).on("click", "#test-patch-transactions", function(transaction) {
+    $.post({
+      type: "PATCH",
+      url: "/transactions/:id",
+      data: transaction,
+      success(response){
+        message(JSON.parse(response)["status"]);
+      }
+    });
+  });
+
+  // DELETE
+
+  $(document).on("click", "#test-delete-transactions", function(transaction) {
+    $.post({
+      type: "GET",
+      url: "/transactions/:id",
+      data: transaction,
+      success(response){
+        message(JSON.parse(response)["status"]);
+      }
+    });
+  });
+
+
 });
 
 // Open or Close mobile & tablet menu

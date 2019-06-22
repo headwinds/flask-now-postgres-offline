@@ -8,14 +8,12 @@ import os
 
 SQLALCHEMY_DATABASE_URI = None
 
-
 if 'DATABASE_URI' in os.environ:
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URI")
 else:
     SQLALCHEMY_DATABASE_URI = os.getenv("DB_URI_LOCAL")
 
 Base = declarative_base()
-
 
 def db_connect():
     """
@@ -24,18 +22,12 @@ def db_connect():
     """
     return create_engine(SQLALCHEMY_DATABASE_URI)
 
-
-class User(Base):
-    __tablename__ = "user"
-
-    id = Column(Integer, primary_key=True)
-    username = Column(String(30), unique=True)
-    password = Column(String(512))
-    email = Column(String(50))
-
-    def __repr__(self):
-        return '<User %r>' % self.username
+# Note order of events matters here 
+# we need to create the Base before importing User 
+from models.user_model import User
+from models.transaction_model import Transaction
 
 
+#def bind_engine():
 engine = db_connect()  # Connect to database
 Base.metadata.create_all(engine)  # Create models
