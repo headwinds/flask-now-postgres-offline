@@ -32,11 +32,12 @@
                   </span>
                 </p>
               </div>
-              <br>
-              <a id="login-button" class="form-button button is-primary is-inverted is-outlined">Sign In</a>
-              <br>
-              <br>
-              <i><a id="feedback" class="feedback"></a></i>
+              <div>
+              <a id="login-button-json" class="form-button button is-primary is-inverted is-outlined">JSON</a>
+              </div>
+              <div>
+                <a id="login-button" class="form-button button is-primary is-inverted is-outlined">FORM</a>
+             </div>
             </div>
           </div>
         </div>
@@ -45,7 +46,7 @@
         <div id="signup-box" class="signup-box" style="width: auto">
             <div class="signup-area">
               <h1 class="title">Sign Up</h1>
-      <!-- <form method="POST" action="{{ url_for('registration.signup') }}">  -->
+      <form method="POST" action="{{ url_for('registration.signup') }}">
        <div>  
           {{ form.csrf_token }}
           <div class="field">
@@ -98,15 +99,15 @@
            {% endfor %}
            </ul>
            <div class="field">
-           <!-- {{ form.recaptcha }}-->
+            {{ form.recaptcha }}
            </div>
            <!-- 
            <input type="submit" id="signup-button" class="form-button button is-primary is-inverted is-outlined" value="submit">
             -->
            <br>
-           <a id="signup-button" class="form-button button is-primary is-inverted is-outlined">Sign Up</a>
+           <input type="submit" id="signup1-button" class="form-button button is-primary is-inverted is-outlined" />
            <br>
-
+        </form>
         </div>
       </div>
       </div>
@@ -116,31 +117,6 @@
     </div>  
     </div>
   </div>
-</section>
-<section class="hero">
-  <footer class="footer">
-    <div class="container">
-      <div class="content has-text-centered">
-        <p>
-          <strong>Flaskex</strong> by Anthony Federico
-          <span class="icon is-small">
-            <i class="fa fa-copyright"></i>
-          </span>2017</a>
-        </p>
-        <p>
-          <a class="icon has-text-primary" href="http://anfederico.github.io" target="_blank">
-            <i class="fa fa-globe"></i>
-          </a>          
-          <a class="icon has-text-primary" href="https://github.com/anfederico" target="_blank">
-            <i class="fa fa-github"></i>
-          </a>
-          <a class="icon has-text-primary" href="mailto:anfed@bu.edu" target="_blank">
-            <i class="fa fa-envelope"></i>
-          </a>
-        </p>
-      </div>
-    </div>
-  </footer>
 </section>
 {% endblock %}
 {% block scripts %}

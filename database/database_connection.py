@@ -11,7 +11,7 @@ SQLALCHEMY_DATABASE_URI = None
 if 'DATABASE_URI' in os.environ:
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URI")
 else:
-    SQLALCHEMY_DATABASE_URI = os.getenv("DB_URI_LOCAL")
+    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://testuser:testpassword@localhost:5432/postgres"
 
 Base = declarative_base()
 

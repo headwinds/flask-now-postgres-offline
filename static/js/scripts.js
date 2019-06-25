@@ -21,6 +21,58 @@ function error(type) {
   $("." + type).css("border-color", "#E14448");
 }
 
+const loginWithJson = (e) => {
+
+    const username = $("#login-user").val();
+  const password = $("#login-pass").val();
+
+  const jsonData = {username, password};
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "/api/login",
+        data: JSON.stringify(jsonData),
+        success: function (data) {
+          console.log(data);
+        },
+        dataType: "json"
+      });
+}
+
+const loginWithJsonA = function(e) {
+    e.preventDefault();
+
+  const url = "/api/login";
+
+  console.log("login to ", url);
+  const username = $("#login-user").val();
+  const password = $("#login-pass").val();
+
+  const jsonData = {username, password};
+
+  $.post({
+    type: "POST",
+    url,
+    data: JSON.stringify(jsonData),
+    //processData: false,
+    dataType: 'json',
+    contentType:"application/json; charset=utf-8",
+    success(response) {
+      const json = JSON.parse(response);
+      const status = json["status"];
+      if (status === "success" && json.source !== "api") {
+        location.reload();
+      } else if (status === "success" && json.source === "api") {
+        console.log("api login success!");
+        location.reload();
+      } else {
+        error("login-input");
+      }
+    }
+  });
+};
+
 const login = function(e) {
     e.preventDefault();
 
@@ -79,7 +131,11 @@ const signup = (e) => {
     processData: false,
     contentType: false,
     success(response) {
+        console.log("TCL: success -> response", response)
+      const json = JSON.parse(response);
       const status = JSON.parse(response)["status"];
+      console.log("TCL: success -> status", status)
+      
       if (status === "success" && json.source !== "api") {
         location.reload();
 
@@ -92,6 +148,7 @@ const signup = (e) => {
       } else {
         error("login-input");
       }
+      
     }
   });
 };
@@ -99,6 +156,9 @@ const signup = (e) => {
 
 $(document).ready(function() {
   $(document).on("click", "#login-button", login);
+  
+  $(document).on("click", "#login-button-json", loginWithJson);
+  
   $(document).keypress(function(e) {
     if (e.which === 13) {
       login();

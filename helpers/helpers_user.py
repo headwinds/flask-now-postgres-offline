@@ -46,6 +46,8 @@ def add_user(username, password, email):
         u = database_connection.User(username=username, password=password, email=email)
         s.add(u)
         s.commit()
+        return True
+    return False
 
 def add_user_purchase(item):
     with session_scope() as s:
