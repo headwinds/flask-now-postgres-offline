@@ -40,80 +40,78 @@
             </div>
           </div>
         </div>
-        <form method="POST" action="{{ url_for('registration.signup') }}"> 
-            {{ form.csrf_token }}
-            {{ form.username.label }}
-            {{ form.username }}
-            <ul> 
-            {% for error in form.username.error %}
-               <li style="coloured:red;">{{ error }}</li>
-            {% endfor %}
-            </ul>
-             {{ form.password.label }} 
-             {{ form.password }}
-             {% for error in form.password.error %} 
-             <ul> 
-                <li style="coloured:red;">{{ error }}</li>
-             {% endfor %}
-             </ul>
-             {{ form.email.label }}
-             {{ form.email }}
-             <ul> 
-             {% for error in form.email.error %}
-                <li style="coloured:red;">{{ error }}</li> 
-             {% endfor %}
-             </ul>
-             {{ form.recaptcha }}
-             <input type="submit" value="submit">
-        </form>
+       
         <div class="column">
-          <div id="signup-box" class="signup-box" style="width: 365px">
+        <div id="signup-box" class="signup-box" style="width: auto">
             <div class="signup-area">
-              <h3 class="title">Register</h3>
-              <div class="field">
-                <p class="control has-icons-left has-icons-right">
-                  <input id="signup-user" class="input is-success" type="text" placeholder="Username">
-                  <span class="icon is-small is-left">
-                    <i class="fa fa-user"></i>
-                  </span>
-                  <span class="icon is-small is-right">
-                    <i class="fa fa-check"></i>
-                  </span>
-                </p>
-              </div>
-              <div class="field">
-                <p class="control has-icons-left has-icons-right">
-                  <input id="signup-mail" class="input is-success" type="text" placeholder="Email">
-                  <span class="icon is-small is-left">
-                    <i class="fa fa-envelope"></i>
-                  </span>
-                  <span class="icon is-small is-right">
-                    <i class="fa fa-check"></i>
-                  </span>
-                </p>
-              </div>
-              <div class="field">
-                <p class="control has-icons-left has-icons-right">
-                  <input id="signup-pass" class="input" type="password" placeholder="Password">
-                  <span class="icon is-small is-left">
-                    <i class="fa fa-lock"></i>
-                  </span>
-                  <span class="icon is-small is-right">
-                    <i class="fa fa-check"></i>
-                  </span>
-                </p>
-              </div>
-              <div class="field">
-                {{ form.recaptcha }}
-              </div>
-              <br>
-              <a id="signup-button" class="form-button button is-primary is-inverted is-outlined">Sign Up</a>
-              <br>
-              <br>
-              <i><a id="feedback" class="feedback"></a></i>
-            </div>
+              <h1 class="title">Sign Up</h1>
+      <!-- <form method="POST" action="{{ url_for('registration.signup') }}">  -->
+       <div>  
+          {{ form.csrf_token }}
+          <div class="field">
+              <p class="control has-icons-left has-icons-right">               
+                {{ form.username(class_="input is-success", placeholder=form.username.label.text, id="signup-user")  }}
+                <span class="icon is-small is-left">
+                  <i class="fa fa-user"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fa fa-check"></i>
+                </span>
+              </p>
           </div>
+          <ul> 
+          {% for error in form.username.error %}
+             <li style="coloured:red;">{{ error }}</li>
+          {% endfor %}
+
+          </ul>
+          <div class="field">
+              <p class="control has-icons-left has-icons-right">
+                {{ form.password(class_="input is-success", placeholder=form.password.label.text, id="signup-pass")  }}
+                <span class="icon is-small is-left">
+                  <i class="fa fa-lock"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fa fa-check"></i>
+                </span>
+              </p>
+            </div>
+           {% for error in form.password.error %} 
+           <ul> 
+              <li style="coloured:red;">{{ error }}</li>
+           {% endfor %}
+           </ul>
+           <div class="field">
+              <p class="control has-icons-left has-icons-right">
+                  {{ form.email(class_="input is-success", placeholder=form.email.label.text, id="signup-mail")  }}
+                <span class="icon is-small is-left">
+                  <i class="fa fa-envelope"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fa fa-check"></i>
+                </span>
+              </p>
+            </div>
+           <ul> 
+           {% for error in form.email.error %}
+              <li style="coloured:red;">{{ error }}</li> 
+           {% endfor %}
+           </ul>
+           <div class="field">
+           <!-- {{ form.recaptcha }}-->
+           </div>
+           <!-- 
+           <input type="submit" id="signup-button" class="form-button button is-primary is-inverted is-outlined" value="submit">
+            -->
+           <br>
+           <a id="signup-button" class="form-button button is-primary is-inverted is-outlined">Sign Up</a>
+           <br>
+
         </div>
+      </div>
+      </div>
+    </div>
+
       </div>
     </div>  
     </div>

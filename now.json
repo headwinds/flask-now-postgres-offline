@@ -1,6 +1,7 @@
 {
     "version": 2,
     "name": "scout",
+    "alias": "scout",
     "builds": [
       { "src": "static/**", "use": "@now/static" },
       { "src": "*.py", "use": "@now/python", "config": { "maxLambdaSize": "30mb" } }
@@ -10,10 +11,20 @@
       { "src": "/", "dest": "app.py" },
       { "src": "/signup", "dest": "app.py" },
       { "src": "/settings", "dest": "app.py" },
-      { "src": "/logout", "dest": "app.py" }
+      { "src": "/logout", "dest": "app.py" },
+      { "src": "/home", "dest": "app.py" },
+      { "src": "/logout", "dest": "app.py" },
+      { "src": "/login", "dest": "app.py" },
+      { "src": "/api/login", "dest": "app.py" },
+      { "src": "/registration", "dest": "app.py" },
+      { "src": "/api/registration", "dest": "app.py" },
+      { "src": "/settings", "dest": "app.py" },
+      { "src": "/about", "dest": "app.py" }
     ],
     "env": {
       "DATABASE_URI": "@flaskex-db-uri",
-      "SECRET_KEY": "@flaskex-secret-key"
+      "SECRET_KEY": "@flaskex-secret-key",
+      "RECAPTCHA_PUBLIC_KEY":"@flaskex-public-key",
+      "RECAPTCHA_PRIVATE_KEY":"@flaskex-private-key"
     }
   }

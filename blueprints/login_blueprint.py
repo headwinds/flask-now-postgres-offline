@@ -18,8 +18,7 @@ def api_login():
                 if credentials_valid(username, password):
                     session['logged_in'] = True
                     session['username'] = username
-                    user = get_user()
-                    return json.dumps({'status': 'success', "username": user.username})
+                    return json.dumps({'status': 'success', "username": username, "source": "api"})
                 return json.dumps({'status': 'Invalid user/pass'})
             return json.dumps({'status': 'Both fields required'})
 
@@ -40,8 +39,7 @@ def login():
                 if credentials_valid(username, password):
                     session['logged_in'] = True
                     session['username'] = username
-                    user = get_user()
-                    return json.dumps({'status': 'success', "username": user.username})
+                    return json.dumps({'status': 'success', "username": username})
                 return json.dumps({'status': 'Invalid user/pass'})
             return json.dumps({'status': 'Both fields required'})
         return render_template('landing.html', form=registrationForm)
