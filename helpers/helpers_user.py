@@ -30,7 +30,8 @@ def get_session():
 def get_user():
     username = session['username']
     with session_scope() as s:
-        user = s.query(database_connection.User).filter(database_connection.User.username.in_([username])).first()
+        user = s.query(database_connection.User).filter(
+            database_connection.User.username.in_([username])).first()
         if user is not None:
             return user
         else:
@@ -38,48 +39,60 @@ def get_user():
             dot_user = SimpleNamespace(**default_user)
             return dot_user
 
+
 # password=password.decode('utf8') not needed
 def add_user(username, password, email):
     with session_scope() as s:
         # hashed_pw = hash_password(password)
         print("saving password: ", password)
-        u = database_connection.User(username=username, password=password, email=email)
+        u = database_connection.User(username=username,
+                                     password=password,
+                                     email=email)
         s.add(u)
         s.commit()
         return True
     return False
 
+
 def add_user_purchase(item):
     with session_scope() as s:
-        u = database_connection.User(username=username, password=password, email=email)
-        u.purchases.append(database_connection.Purchase(item))        
+        u = database_connection.User(username=username,
+                                     password=password,
+                                     email=email)
+        u.purchases.append(database_connection.Purchase(item))
         s.add(u)
         s.commit()
+
 
 def change_user(**kwargs):
     username = session['username']
     with session_scope() as s:
-        user = s.query(database_connection.User).filter(database_connection.User.username.in_([username])).first()
+        user = s.query(database_connection.User).filter(
+            database_connection.User.username.in_([username])).first()
         for arg, val in kwargs.items():
             if val != "":
                 setattr(user, arg, val)
         s.commit()
 
+
 # https://stackoverflow.com/questions/34548846/flask-bcrypt-valueerror-invalid-salt
 # read the J Mulet reply about decoding and postgres
 def hash_password(password):
-    pwhash = bcrypt.hashpw(password.encode('utf8'), bcrypt.gensalt()) # was just this line
-    return pwhash.decode('utf8') # decode the hash to prevent is encoded twice
+    pwhash = bcrypt.hashpw(password.encode('utf8'),
+                           bcrypt.gensalt())  # was just this line
+    return pwhash.decode('utf8')  # decode the hash to prevent is encoded twice
 
 
 def credentials_valid(username, password):
     with session_scope() as s:
-        user = s.query(database_connection.User).filter(database_connection.User.username.in_([username])).first()
-        print("credentials_valid user:",user)
+        user = s.query(database_connection.User).filter(
+            database_connection.User.username.in_([username])).first()
+        print("credentials_valid user:", user)
         if user:
             print("credentials_valid user success")
             print("credentials_valid user.password:", user.password)
-            return bcrypt.checkpw(password.encode('utf8'), user.password.encode('utf8'))
+            return bcrypt.checkpw(password.encode('utf8'),
+                                  user.password.encode('utf8'))
         else:
             print("credentials_valid user fail")
             return False
@@ -87,4 +100,5 @@ def credentials_valid(username, password):
 
 def username_taken(username):
     with session_scope() as s:
-        return s.query(database_connection.User).filter(database_connection.User.username.in_([username])).first()
+        return s.query(database_connection.User).filter(
+            database_connection.User.username.in_([username])).first()

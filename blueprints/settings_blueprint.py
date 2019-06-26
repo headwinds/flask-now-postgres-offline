@@ -3,6 +3,7 @@ from helpers.helpers_user import get_user, credentials_valid
 
 settings_blueprint = Blueprint("settings", __name__)
 
+
 # -------- API Settings --------- #
 @settings_blueprint.route('/api/settings', methods=['GET', 'POST'])
 def api_settings():
@@ -16,6 +17,7 @@ def api_settings():
             return json.dumps({'status': 'Saved'})
     user = get_user()
     return json.dumps({'status': 'success', user: user})
+
 
 # -------- Test Settings --------- #
 @settings_blueprint.route('/settings', methods=['GET', 'POST'])

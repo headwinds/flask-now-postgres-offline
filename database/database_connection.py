@@ -15,6 +15,7 @@ else:
 
 Base = declarative_base()
 
+
 def db_connect():
     """
     Performs database connection using database settings from settings.py.
@@ -22,12 +23,12 @@ def db_connect():
     """
     return create_engine(SQLALCHEMY_DATABASE_URI)
 
-# Note order of events matters here 
-# we need to create the Base before importing User 
+
+# Note order of events matters here
+# we need to create the Base before importing User
 from models.user_model import User
 from models.transaction_model import Transaction
 
-
-#def bind_engine():
+# def bind_engine():
 engine = db_connect()  # Connect to database
 Base.metadata.create_all(engine)  # Create models

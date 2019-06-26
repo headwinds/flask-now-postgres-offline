@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from dotenv import load_dotenv
-load_dotenv()
-import database.database_connection 
+import database.database_connection
 from forms.login_form import LoginForm
 from helpers.helpers_user import get_user, hash_password, credentials_valid, username_taken, add_user, change_user
 from flask import Flask, redirect, url_for, render_template, request, session
@@ -13,11 +11,14 @@ from blueprints.login_blueprint import login_blueprint
 from blueprints.logout_blueprint import logout_blueprint
 from blueprints.registration_blueprint import registration_blueprint
 from blueprints.settings_blueprint import settings_blueprint
+from blueprints.transaction_blueprint import transaction_blueprint
 import json
 import sys
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
-# ======== App Config =================================================#
+# ======== App Config =============================== #
 
 app = Flask(__name__)
 CORS(app)
@@ -30,33 +31,33 @@ else:
 
 app.secret_key = secret_key
 
-app.config['RECAPTCHA_USE_SSL']= False
-app.config['RECAPTCHA_PUBLIC_KEY']= os.getenv("RECAPTCHA_PUBLIC_KEY")
-app.config['RECAPTCHA_PRIVATE_KEY']= os.getenv("RECAPTCHA_PRIVATE_KEY")
-app.config['RECAPTCHA_OPTIONS'] = {'theme':'white'}
+app.config['RECAPTCHA_USE_SSL'] = False
+app.config['RECAPTCHA_PUBLIC_KEY'] = os.getenv("RECAPTCHA_PUBLIC_KEY")
+app.config['RECAPTCHA_PRIVATE_KEY'] = os.getenv("RECAPTCHA_PRIVATE_KEY")
+app.config['RECAPTCHA_OPTIONS'] = {'theme': 'white'}
 
-
-# ======== Blueprint Routing =================================================#
-# Landing 
+# ======== Blueprint Routing =============================== #
+# Landing
 app.register_blueprint(landing_blueprint)
-# Login 
+# Login
 app.register_blueprint(login_blueprint)
-# Logout 
+# Logout
 app.register_blueprint(logout_blueprint)
-# Registration 
+# Registration
 app.register_blueprint(registration_blueprint)
-# Home 
+# Home
 app.register_blueprint(home_blueprint)
-# Settings 
+# Settings
 app.register_blueprint(settings_blueprint)
-# About 
+# About
 app.register_blueprint(about_blueprint)
+# Transaction
+app.register_blueprint(transaction_blueprint)
 
-
-# ======== Bind the Database =================================================#
+# ======== Bind the Database ================================ #
 # bind_engine()
 
-# ======== Main ============================================================== #
+# ======== Main ============================================== #
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)  # Generic key for dev purposes only
     app.run(debug=True, use_reloader=True)
