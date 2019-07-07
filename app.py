@@ -18,6 +18,12 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+"""
+session notes 
+csrf - https://stackoverflow.com/questions/21509728/flask-restful-post-fails-due-csrf-protection-of-flask-wtf
+
+"""
+
 # ======== App Config =============================== #
 
 app = Flask(__name__)

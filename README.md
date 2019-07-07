@@ -1,8 +1,8 @@
-# Build a simple Python 3 API with Flaskex
+# Forge a modular Python API with blueprints, csrf protection, and recaptcha
 
 so you want to build a simple Flask based python API with [Flaskex](https://github.com/anfederico/Flaskex) and deploy it with [now](https://zeit.co/now)?
 
-On top of the Flaskex starter, I added the following:
+Built on top of the Flaskex starter, I added the following:
 * registration with recaptcha 
 * verify registration account via email 
 * more modular blueprint routes so that you can serve json or html templates

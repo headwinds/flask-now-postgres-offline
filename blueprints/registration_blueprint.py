@@ -1,8 +1,9 @@
-from flask import Blueprint, redirect, url_for, render_template, request, session, json
+from flask import Blueprint, redirect, url_for, render_template, request, session, json, jsonify
 from helpers.helpers_user import get_user, credentials_valid, username_taken, add_user, hash_password
 from forms.registration_form import RegistrationForm
 
 registration_blueprint = Blueprint("registration", __name__)
+
 
 def register(request):
     print("signup register")
@@ -15,7 +16,7 @@ def register(request):
         result = add_user(username, password, email)
         session['logged_in'] = True
         session['username'] = username
-        if result == True:
+        if result is True:
             print("registered success")
             return redirect(url_for('home.home'))
         else:
@@ -23,10 +24,11 @@ def register(request):
             return redirect(url_for('landing.landing'))
     return json.dumps({'status': 'Username taken'})
 
-# ensure that we are registrating with formData 
+
+# ensure that we are registrating with formData
 # form.username.data is FlaskForm
 # -------- Register --------- #
-@registration_blueprint.route('/signup', methods=['GET','POST'])
+@registration_blueprint.route('/signup', methods=['GET', 'POST'])
 def signup():
     if not session.get('logged_in'):
         form = RegistrationForm(request.form)
@@ -34,7 +36,7 @@ def signup():
         # only works against localhost testing
 
         print("signup not logged in!")
-  
+
         if form.validate_on_submit():
             print("validate!")
             return register(request)

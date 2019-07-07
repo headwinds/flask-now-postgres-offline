@@ -27,3 +27,15 @@
 .settings-area {
   padding: 30px;
 }
+
+.hero-bg {
+    background: #aab8ae !important;
+}
+
+.title {
+    color: #6e6e6e !important;;
+}
+
+.is-success {
+    color: #abdeff !important;;
+}

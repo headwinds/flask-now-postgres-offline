@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% block body %}
 {% include "navbar-landing.html" %}
-<title>Flaskex</title>
-<section class="hero is-primary is-bold is-medium">
+<section class="hero hero-bg">
   <div class="hero-body">
     <div class="container has-text-centered">
       <div class="columns" style="display: flex; flex-direction: rows">
@@ -120,5 +119,6 @@
 </section>
 {% endblock %}
 {% block scripts %}
+<script src="../static/js/transactions.js"></script>
 <script src="../static/js/scripts.js"></script>
 {% endblock %}

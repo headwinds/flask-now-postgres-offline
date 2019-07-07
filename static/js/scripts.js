@@ -33,9 +33,9 @@ const loginWithJson = (e) => {
         contentType: "application/json; charset=utf-8",
         url: "/api/login",
         data: JSON.stringify(jsonData),
-        success: function (data) {
-          console.log(data);
-          if (data.status === 200 && data.message === "success") {
+        success: function (response) {
+ 
+          if (response.status === 200 && response.message === "success") {
             location.reload();
           }
         },
@@ -102,17 +102,18 @@ const signup = (e) => {
     processData: false,
     contentType: false,
     success(response) {
-        console.log("TCL: success -> response", response)
-      const json = JSON.parse(response);
-      const status = JSON.parse(response)["status"];
-      console.log("TCL: success -> status", status)
+      console.log("TCL: success -> response", response)
+      //const json = JSON.parse(response);
+
+      const message = response["message"];
+      console.log("TCL: success -> status", response.status)
       
-      if (status === "success" && json.source !== "api") {
+      if (message === "success" && response.source !== "api") {
         location.reload();
 
         //$.get({url: "/home", type: "GET"})
 
-      } else if (status === "success" && json.source === "api") {
+      } else if (message === "success" && response.source === "api") {
         console.log("api login success!");
         location.reload();
         //$.get({url: "/home", type: "GET"})
