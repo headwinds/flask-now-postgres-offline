@@ -20,7 +20,8 @@
       { "src": "/api/registration", "dest": "app.py" },
       { "src": "/settings", "dest": "app.py" },
       { "src": "/about", "dest": "app.py" },
-      { "src": "/api/about", "dest": "app.py" }
+      { "src": "/api/about", "dest": "app.py" },
+      { "src": "/api/cbc/schedules", "dest": "app.py" }
     ],
     "env": {
       "DATABASE_URI": "@flaskex-db-uri",

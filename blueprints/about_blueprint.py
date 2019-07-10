@@ -17,8 +17,9 @@ def about_route():
         about = """
                 You are logged in and can see that Forge is an API tool. 
                 """
-        return jsonify({'data':{"about": about, "status": 200}})
-    return jsonify({'data':{"about": about, "status": 200}})
+        return jsonify({'data': {"about": about, "status": 200}})
+    return jsonify({'data': {"about": about, "status": 200}})
+
 
 # -------- TEST ABOUT --------- #
 @about_blueprint.route('/about', methods=['GET'])

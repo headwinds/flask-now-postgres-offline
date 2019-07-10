@@ -6,6 +6,7 @@ from flask import Flask, redirect, url_for, render_template, request, session
 from flask_cors import CORS
 from blueprints.landing_blueprint import landing_blueprint
 from blueprints.about_blueprint import about_blueprint
+from blueprints.cbc_blueprint import cbc_blueprint
 from blueprints.home_blueprint import home_blueprint
 from blueprints.login_blueprint import login_blueprint
 from blueprints.logout_blueprint import logout_blueprint
@@ -59,6 +60,9 @@ app.register_blueprint(settings_blueprint)
 app.register_blueprint(about_blueprint)
 # Transaction
 app.register_blueprint(transaction_blueprint)
+# CBC Schedules
+app.register_blueprint(cbc_blueprint)
+
 
 # ======== Bind the Database ================================ #
 # bind_engine()
