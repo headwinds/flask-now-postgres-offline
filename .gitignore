@@ -160,3 +160,4 @@ htmlcov/
 .coverage
 .coverage.*
 *,cover
+sendgrid.env

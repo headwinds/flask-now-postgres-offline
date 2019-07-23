@@ -13,6 +13,7 @@ from blueprints.logout_blueprint import logout_blueprint
 from blueprints.registration_blueprint import registration_blueprint
 from blueprints.settings_blueprint import settings_blueprint
 from blueprints.transaction_blueprint import transaction_blueprint
+from blueprints.email_blueprint import email_blueprint
 import json
 import sys
 import os
@@ -62,6 +63,8 @@ app.register_blueprint(about_blueprint)
 app.register_blueprint(transaction_blueprint)
 # CBC Schedules
 app.register_blueprint(cbc_blueprint)
+# Email
+app.register_blueprint(email_blueprint)
 
 
 # ======== Bind the Database ================================ #

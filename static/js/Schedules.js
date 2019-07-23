@@ -75,8 +75,8 @@ class Schedules extends React.Component {
 
     const radio1 = stations.find( item => item.station === "radio1");
 
-    const radio1List = radio1.schedule.map(listValue => {
-        return React.createElement("li", {key: listValue.title}, listValue.title);
+    const radio1List = radio1.schedule.map((listValue, idx) => {
+        return React.createElement("li", {key: idx}, listValue.title);
       })
 
 

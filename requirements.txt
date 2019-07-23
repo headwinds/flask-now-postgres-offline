@@ -9,3 +9,4 @@ Flask-Cors==3.0.8
 python-dotenv==0.10.3
 Flask-WTF==0.14
 bs4==0.0.1
+sendgrid==6.0.5

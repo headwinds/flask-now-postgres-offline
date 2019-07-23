@@ -23,7 +23,7 @@ function error(type) {
 
 const loginWithJson = (e) => {
 
-    const username = $("#login-user").val();
+  const username = $("#login-user").val();
   const password = $("#login-pass").val();
 
   const jsonData = {username, password};
@@ -34,6 +34,32 @@ const loginWithJson = (e) => {
         url: "/api/login",
         data: JSON.stringify(jsonData),
         success: function (response) {
+ 
+          if (response.status === 200 && response.message === "success") {
+            location.reload();
+          }
+        },
+        dataType: "json"
+      });
+}
+
+const testEmail = (e) => {
+
+  console.log("testing email....");
+
+  const username = $("#login-user").val();
+  const password = $("#login-pass").val();
+
+  const jsonData = {username, password};
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        url: "/api/email",
+        data: JSON.stringify(jsonData),
+        success: function (response) {
+
+          console.log("Email success: ", response);
  
           if (response.status === 200 && response.message === "success") {
             location.reload();
@@ -127,9 +153,9 @@ const signup = (e) => {
 
 $(document).ready(function() {
   $(document).on("click", "#login-button", login);
-  
   $(document).on("click", "#login-button-json", loginWithJson);
-  
+  $(document).on("click", "#email", testEmail);
+
   $(document).keypress(function(e) {
     if (e.which === 13) {
       login();

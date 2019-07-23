@@ -39,6 +39,8 @@ $ python install -r requirements.txt
 DATABASE_URI = "postgresql+psycopg2://testuser:testpassword@localhost:5432/postgres"
 ```
 
+If this fails, you will probably need to [create a test user](https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e) on your postgres DB. 
+
 4. run the app 
 
 ```
