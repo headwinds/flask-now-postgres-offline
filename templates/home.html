@@ -18,51 +18,64 @@
         <h2>Test API calls</h2>
         <hr />
         <div>
+            <h3>Post Transaction</h3>
+            <p>send an gamer's action to the server and saves it in the datasebase</p>
+            <p>route: "/api/transactions"</p>
+            <h4>Payload</h4>
+            <code>
+                {title: "buy item",
+                type: "transaction",
+                meta: {title: "sword", cost: 10}}
+            </code>
             <div>
-                <h3>Post Transaction</h3>
-                <p>send an gamer's action to the server and saves it in the datasebase</p>
-                <p>route: "/api/transactions"</p>
-                <h4>Payload</h4>
-                <code>
-                    {title: "buy item",
-                    type: "transaction",
-                    meta: {title: "sword", cost: 10}}
-                </code>
-                <div>
-                    <button id="test-post-transaction">Post Transaction</button>
-                </div>
+                <button id="test-post-transaction">Post Transaction</button>
             </div>
-            <hr />
+        </div>
+        <hr />
+        <div>
+            <h3>Get Transactions</h3>
+            <p>get the user's transactions for the last week limited to a max of 100 for each page</p>
+            <p>route: "/actions/:id"</p>
             <div>
-                <h3>Get Transactions</h3>
-                <p>get the user's transactions for the last week limited to a max of 100 for each page</p>
-                <p>route: "/actions/:id"</p>
-                <div>
-                   <!-- {% include "transaction-table.html" %} -->
-                </div>
-                <button id="test-get-transactions">Get Transactions</button>
+                <!-- {% include "transaction-table.html" %} -->
             </div>
-            <hr />
-            <div>
-                <h3>Update Last Action</h3>
-                <p>get the user's actions</p>
-                <p>route: "/actions/:id/update"</p>
-                <h4>Payload</h4>
-                <code>
-                    {userId: 0,
-                    action: "sell item",
-                    item: {title: "club", cost: 100}}
-                </code>
-            </div>
-            <hr />
-            <div>
-                <h3>Delete Last Action</h3>
-                <p>get the user's actions</p>
-                <p>route: "/actions/:id/delete"</p>
-            </div>
+            <button id="test-get-transactions">Get Transactions</button>
+        </div>
+        <hr />
+        <div>
+            <h3>Update Last Action</h3>
+            <p>get the user's actions</p>
+            <p>route: "/actions/:id/update"</p>
+            <h4>Payload</h4>
+            <code>
+                {userId: 0,
+                action: "sell item",
+                item: {title: "club", cost: 100}}
+            </code>
+        </div>
+        <hr />
+        <div>
+            <h3>Delete Last Action</h3>
+            <p>get the user's actions</p>
+            <p>route: "/actions/:id/delete"</p>
+        </div>
+        <hr />
+        <div>
+            <h3>Email</h3>
+            <p>send a transaction through email</p>
+            <button id="email">Send</button>
+        </div>
+        <hr />
+        <div>
+            <h3>Get CBC Schedules</h3>
+            <p>Radio 1</p>
+            <button id="email">Get CBC Radio 1</button>
+            <p>Radio 2</p>
+            <button id="email">Get CBC Radio 2</button>
         </div>
     </div>
 </section>
+{% include "schedules.html" %}
 {% endblock %}
 {% block scripts %}
 <script src="../static/js/transactions.js"></script>

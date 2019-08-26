@@ -3,7 +3,7 @@ from helpers.helpers_user import get_user, credentials_valid
 from forms.login_form import LoginForm
 import os
 from email import message
-from helpers.helpers_sendgrid import send_email
+from helpers.helpers_email import send_email
 
 email_blueprint = Blueprint("email", __name__)
 
@@ -19,7 +19,6 @@ def email_route():
 
     print("Email response without status_code is: ", response)
     return jsonify({"body": {}, "status": 400, "message": "fail"})
-
 
 
 # -------- TEST email --------- #

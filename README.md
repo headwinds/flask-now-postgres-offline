@@ -4,7 +4,7 @@ so you want to build a simple Flask based python API with [Flaskex](https://gith
 
 Built on top of the Flaskex starter, I added the following:
 * registration with recaptcha 
-* verify registration account via email 
+* verify registration account via [email confirmation](https://realpython.com/handling-email-confirmation-in-flask/)
 * more modular blueprint routes so that you can serve json or html templates
 * a route which performs a database join
 * routes that perform all the REST verbs: GET, POST, PUT, DELETE, PATCH 
@@ -72,6 +72,10 @@ now
 ```
 
 Open your browswer then copy and paste the url it provided to your clipboard. 
+
+WSGI Server - Zeit supports Waitress
+
+[Flask & Waitress](https://medium.com/brillio-data-science/exposing-your-data-science-project-to-the-world-flask-with-a-waitress-8592f0356b27)
 
 # Credit 
 

@@ -21,6 +21,7 @@ class Schedules extends React.Component {
 
   componentDidMount() {
     const { stations } = this.state;
+    return;
     this.getStation("radio1")
       .then(response => response.json())
       .then(data => {

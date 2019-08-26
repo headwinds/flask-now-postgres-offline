@@ -14,11 +14,17 @@ from blueprints.registration_blueprint import registration_blueprint
 from blueprints.settings_blueprint import settings_blueprint
 from blueprints.transaction_blueprint import transaction_blueprint
 from blueprints.email_blueprint import email_blueprint
+from waitress import serve
+from flask_wtf import CSRFProtect
 import json
 import sys
 import os
 from dotenv import load_dotenv
 load_dotenv()
+
+
+
+csrf = CSRFProtect()
 
 """
 session notes 
@@ -30,6 +36,7 @@ csrf - https://stackoverflow.com/questions/21509728/flask-restful-post-fails-due
 
 app = Flask(__name__)
 CORS(app)
+csrf.init_app(app)
 
 secret_key = None
 if 'SECRET_KEY' in os.environ:
@@ -40,8 +47,22 @@ else:
 app.secret_key = secret_key
 
 app.config['RECAPTCHA_USE_SSL'] = False
+
+
+# development
+'''
+if 'ENV' not in os.environ:
+    app.config['RECAPTCHA_PUBLIC_KEY'] = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+    app.config['RECAPTCHA_PRIVATE_KEY'] = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe"
+else:
+    print("env: ", os.environ['ENV'])
+    app.config['RECAPTCHA_PUBLIC_KEY'] = os.getenv("RECAPTCHA_PUBLIC_KEY")
+    app.config['RECAPTCHA_PRIVATE_KEY'] = os.getenv("RECAPTCHA_PRIVATE_KEY")
+'''
 app.config['RECAPTCHA_PUBLIC_KEY'] = os.getenv("RECAPTCHA_PUBLIC_KEY")
 app.config['RECAPTCHA_PRIVATE_KEY'] = os.getenv("RECAPTCHA_PRIVATE_KEY")
+
+
 app.config['RECAPTCHA_OPTIONS'] = {'theme': 'white'}
 
 # ======== Blueprint Routing =============================== #
@@ -49,10 +70,12 @@ app.config['RECAPTCHA_OPTIONS'] = {'theme': 'white'}
 app.register_blueprint(landing_blueprint)
 # Login
 app.register_blueprint(login_blueprint)
+csrf.exempt(login_blueprint)
 # Logout
 app.register_blueprint(logout_blueprint)
 # Registration
 app.register_blueprint(registration_blueprint)
+csrf.exempt(registration_blueprint)
 # Home
 app.register_blueprint(home_blueprint)
 # Settings
@@ -73,4 +96,10 @@ app.register_blueprint(email_blueprint)
 # ======== Main ============================================== #
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)  # Generic key for dev purposes only
-    app.run(debug=True, use_reloader=True)
+    """
+    if 'ENV' not in os.environ:
+        app.run(debug=True, use_reloader=True)
+    else:
+        serve(app, host='0.0.0.0', port=5000)
+    """
+    serve(app, host='0.0.0.0', port=5000)

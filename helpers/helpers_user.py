@@ -6,6 +6,8 @@ from sqlalchemy.orm import sessionmaker
 from contextlib import contextmanager
 from types import SimpleNamespace
 import bcrypt
+from helpers.helpers_email import generate_confirmation_token
+import datetime
 
 
 @contextmanager
@@ -40,6 +42,11 @@ def get_user():
             return dot_user
 
 
+def get_user_email():
+    with session_scope() as s:
+        return s.query(database_connection.User).filter_by(email=email).first_or_404()
+
+
 # password=password.decode('utf8') not needed
 def add_user(username, password, email):
     with session_scope() as s:
@@ -47,11 +54,30 @@ def add_user(username, password, email):
         print("saving password: ", password)
         u = database_connection.User(username=username,
                                      password=password,
-                                     email=email)
+                                     email=email,
+                                     confirmed=False)
         s.add(u)
         s.commit()
+
+        token = generate_confirmation_token(email=email)
+
         return True
     return False
+
+
+def update_confirm_user_email():
+    with session_scope() as s:
+        user = get_user()
+        user.confirmed = True
+        user.confirmed_on = datetime.datetime.now()
+
+        # user.update({'confirmed': True, 'confirmed_on': datetime.datetime.now()})
+
+        s.commit()
+
+        return True
+    return False
+
 
 
 def add_user_purchase(item):

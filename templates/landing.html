@@ -47,7 +47,7 @@
               <h1 class="title">Sign Up</h1>
       <form method="POST" action="{{ url_for('registration.signup') }}">
        <div>  
-          {{ form.csrf_token }}
+          {{ form.hidden_tag() }}
           <div class="field">
               <p class="control has-icons-left has-icons-right">               
                 {{ form.username(class_="input is-success", placeholder=form.username.label.text, id="signup-user")  }}
@@ -117,10 +117,6 @@
     </div>
   </div>
 </section>
-<section>
-  <button id="email">Test Email</button>
-</section>
-{% include "schedules.html" %}
 {% endblock %}
 {% block scripts %}
 <script src="../static/js/transactions.js"></script>
